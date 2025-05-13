@@ -9,8 +9,8 @@ services:
     networks:
       - orchestrator-saga
     environment:
-      - MONGO_INIT_DB_ROOT_USERNAME=admin
-      - MONGO_INIT_DB_ROOT_PASSWORD=123456
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=123456
     ports:
       - "27017:27017"
 
@@ -32,7 +32,7 @@ services:
     networks:
       - orchestrator-saga
     environment:
-      - POSTGRES_DB=product-db
+      - POSTGRES_DB=payment-db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
@@ -44,7 +44,7 @@ services:
     networks:
       - orchestrator-saga
     environment:
-      - POSTGRES_DB=product-db
+      - POSTGRES_DB=inventory-db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
@@ -73,7 +73,7 @@ services:
 
   redpanda-console:
     container_name: redpanda
-    image: docker.redpanda.com/vectorized/console:latest
+    image: docker.redpanda.com/redpandadata/console:latest
     restart: on-failure
     entrypoint: /bin/sh
     command: -c "echo \"$$CONSOLE_CONFIG_FILE\" > /tmp/config.yml; /app/console"
