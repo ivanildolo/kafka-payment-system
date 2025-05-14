@@ -79,13 +79,18 @@ public class KafkaConfig {
     }
 
     @Bean
-    public NewTopic productValidationSuccessTopic(){
-        return buildTopic(Etopics.PRODUCT_VALIDATION_SUCCESS.getTopic());
+    public NewTopic baseOrchestrator(){
+        return buildTopic(Etopics.BASE_ORCHESTRATOR.getTopic());
     }
 
     @Bean
-    public NewTopic productValidationFail(){
-        return buildTopic(Etopics.PRODUCT_VALIDATION_FAIL.getTopic());
+    public NewTopic finishSuccessTopic(){
+        return buildTopic(Etopics.FINISH_SUCCESS.getTopic());
+    }
+
+    @Bean
+    public NewTopic finishFailTopic(){
+        return buildTopic(Etopics.FINISH_FAIL.getTopic());
     }
 
     @Bean
