@@ -163,7 +163,7 @@ services:
       - KAFKA_BROKER=KAFKA:29092
       - DB_HOST=inventory-db
       - DB_NAME=inventory-db
-      - DB_PORT=5432qq
+      - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
     ports:

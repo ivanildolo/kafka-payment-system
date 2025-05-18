@@ -21,3 +21,8 @@ logging:
     org:
       apache:
         kafka: OFF
+
+
+      springframework:
+        data:
+          mongodb: DEBUG
