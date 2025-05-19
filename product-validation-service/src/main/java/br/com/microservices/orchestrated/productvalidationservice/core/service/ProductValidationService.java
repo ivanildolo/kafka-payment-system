@@ -42,9 +42,6 @@ public class ProductValidationService {
         kafkaProducer.sendEvent(jsonUtil.toJson(event));
     }
 
-    private void handleFailCurrentNotExecuted(Event event, String message) {
-    }
-
     private void validateProductsInformed(Event event) {
         if (ObjectUtils.isEmpty(event.getPayload()) || ObjectUtils.isEmpty(event.getPayload().getProducts())) {
             throw new ValidationException("Product list is empty!");
@@ -88,13 +85,13 @@ public class ProductValidationService {
         validationRepository.save(validation);
     }
 
-    private void handleSuccess(Event event){
+    private void handleSuccess(Event event) {
         event.setStatus(ESagaStatus.SUCCESS);
         event.setSource(CURRENT_SOURCE);
         addHistory(event, "Products are validated successfully!");
     }
 
-    private void addHistory(Event event, String message){
+    private void addHistory(Event event, String message) {
         var history = History
                 .builder()
                 .source(event.getSource())
@@ -103,6 +100,29 @@ public class ProductValidationService {
                 .createdAt(LocalDateTime.now())
                 .build();
         event.addToHistory(history);
+    }
+
+    private void handleFailCurrentNotExecuted(Event event, String message) {
+        event.setStatus(ESagaStatus.ROLLBACK_PENDING);
+        event.setSource(CURRENT_SOURCE);
+        addHistory(event, "Fail to validate products: ".concat(message));
+    }
+
+    public void rollbackEvent(Event event) {
+        changeValidateionToFail(event);
+        event.setStatus(ESagaStatus.FAIL);
+        event.setSource(CURRENT_SOURCE);
+        addHistory(event, "Rollback executed on product validation!");
+        kafkaProducer.sendEvent(jsonUtil.toJson(event));
+    }
+
+    private void changeValidateionToFail(Event event) {
+        validationRepository.findByOrderIdAndTransactionId(event.getPayload().getId(), event.getTransactionId())
+                .ifPresentOrElse(validation -> {
+                            validation.setSuccess(false);
+                            validationRepository.save(validation);
+                        },
+                        () -> createValidation(event, false));
     }
 
 
