@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/base_files.iml" filepath="$PROJECT_DIR$/.idea/base_files.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/inventory-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/inventory-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/kafka-payment-system.iml" filepath="$PROJECT_DIR$/.idea/kafka-payment-system.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/orchestrator-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/orchestrator-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/order-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/order-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/payment-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/payment-service.main.iml" />
