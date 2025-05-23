@@ -95,6 +95,16 @@ public class KafkaConfig {
     }
 
     @Bean
+    public NewTopic productValidationSuccessTopic() {
+        return buildTopic(Etopics.PRODUCT_VALIDATION_SUCCESS.getTopic());
+    }
+
+    @Bean
+    public NewTopic productValidationFailTopic() {
+        return buildTopic(Etopics.PRODUCT_VALIDATION_FAIL.getTopic());
+    }
+
+    @Bean
     public NewTopic paymentSuccessTopic(){
         return buildTopic(Etopics.PAYMENT_SUCCESS.getTopic());
     }
