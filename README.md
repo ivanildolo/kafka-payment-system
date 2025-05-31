@@ -1,4 +1,8 @@
 ## Kafka Payment System
+![Arquitetura](./assets/saga-coreografado.png)
+
+### Arquitetura
+![Arquitetura](./assets/arquitetura-proposta.png)
 
 #### Connect docker mongodb
 docker exec -it order-db mongosh "mongodb://admin:123456@localhost:27017"
